@@ -37,7 +37,7 @@ $ seifk
 
 :/home.folderone
 
-``
+```
 
 **ls** - show us all the folders and directories .
 
