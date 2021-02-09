@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 
 **clear** - clear all that is in the terminal.
 
@@ -73,7 +71,7 @@ man ls
 
 ```
 
-**`vim** - allows us to edit a vim document .
+**vim** - allows us to edit a vim document .
 
 ```
 
