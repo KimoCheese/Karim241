@@ -133,7 +133,9 @@ chown [OPTIONS] USER[:GROUP] FILE(s)
 
 ln -s [OPTIONS] FILE LINK   
 
-**mkdir**-Thiscommandallowsyoutocreateadirectory
+```
+
+**mkdir**-This command allows you to create a directory
 
 ```
 
