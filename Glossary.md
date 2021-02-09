@@ -222,5 +222,3 @@ touch file_name
 ```
 
 stat file.txt
-
-
