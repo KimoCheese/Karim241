@@ -1,6 +1,7 @@
 #include "file_lib.h"
 #include "sorter.h"
 #include <stdio.h>
+#include <stdlib.h>
 	
 /*
  * Read the file from the command-line.
@@ -11,7 +12,8 @@
 
 int main(int argc, char** argv){
 	// Read the original file.
-	
+	char** file_contents;
+	load_file("out_of_order_file", file_contents);
 
 	// Sort the file with the function you wrote.
 	
@@ -20,7 +22,6 @@ int main(int argc, char** argv){
 	
 
 }
-
 // You can see if your file worked correctly by using the
 // command:
 //
