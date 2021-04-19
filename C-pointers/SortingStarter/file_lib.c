@@ -1,16 +1,30 @@
 #include "file_lib.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
+size_t load_file(char *path, char **contents)
+{
+    char input[255];
+    int row_size = 15 * sizeof(char);
+    long length;
+    FILE *f = fopen(path, "rb");
+    if (f)
+    {
+        fseek(f, 0, SEEK_END);
+        length = ftell(f);
+        fseek(f, 0, SEEK_SET);
+        *contents = malloc(length);
+        if (*contents)
+        {
+            fread(*contents, 1, length, f);
+        }
+        fclose(f);
+    }
 
-size_t load_file(char* path, char** contents){
-	FILE *f = fopen(path, "rb");
-	char line[20];
-	while (fgets (line, sizeof (line)/sizeof (line[0]) ,f ) ){
-		printf ("%c\n", *line);
-	}
-	return 1;
+    return length;
 }
-size_t save_file(char* path, char* contents, size_t size){
-	return 1;
+size_t save_file(char *path, char *contents, size_t size)
+{
+    return 1;
 }
