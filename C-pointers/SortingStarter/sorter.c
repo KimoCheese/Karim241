@@ -1,57 +1,62 @@
 #include "sorter.h"
 #include <stdio.h>
 #include <string.h>
-void fill_array_with_file_contents(char *contents, char **strArr);
-char** build_array_to_sort();
-int row_size = 25 * sizeof(char);
-int num_rows = 102401;
-void sort(char *contents, int size)
-{
-    char **arr = build_array_to_sort();
-    fill_array_with_file_contents(contents, arr);
-}
 
-char** build_array_to_sort()
-{
-    char **arr = (char **)malloc(num_rows * sizeof(char *));
-    for (int i = 0; i < num_rows; i++)
-        arr[i] = (char *)malloc(row_size);
 
-    return arr;
-}
+void sort(char** contents, int size){
+		
+		
+	// Creates nested for loop variables and a key to compare elements	
+	int i, k, j, l;
+	char* key;
 
-void fill_array_with_file_contents(char *contents, char **strArr)
-{
-//grabs the top string from the file contents and puts it in the token variable
-    char *token;
-    token = strtok(contents, "\n");
-//loop throught every single line in the context and add to the array
-void sort(char **array, int filelinecount)
-{
-    int i, j;
-    char t[num_rows];
+	// Store contents individually as strings
+		char** array = (char**)malloc(sizeof(char*)*size);
+	
+	// Using strtok breaking a string into a series of tokens using delimiter of new line
+	char* str;
+	str = strtok(*contents, "\n");
 
-    for(i=1;i<row_size;i++)
-    {
-        for(j=1;j<row_size;j++)
-        {
-            if(strcmp(array[j-1], array[j]) > 0)
-            {
-                strcpy(t, array[j-1]);
-                t[LINE_MAX_SIZE] = 0;
-                strcpy(array[j-1], array[j]);
-                strcpy(array[j], t);
-            }
-        }
-    }
-}
-// gets the next token and loops again
-    int i = 0;
-    while (token != NULL)
-    {
-        strArr[i] = token;
-        printf("Arr: %s\n", strArr[i]);
-        token = strtok(NULL, "\n");
-    }
-}
+	// Initialization, adding each line into a new part of the array
+	for(i=0; str != NULL; ++i){
+		array[i] = (char*)malloc(strlen(str)+sizeof(char));
+		for(l=0; l < strlen(str); ++l){
+			array[i][l] = str[l];	
+		}
+		str = strtok(NULL, "\n");
+	}
 
+	for (k = 1; k < size; k++){
+		key = array[k];
+		j = k-1;
+
+		while(j >= 0 && strcmp(array[j], key) > 0){
+			array[j+1] = array[j];
+			j = j-1;
+		}
+		array[j + 1] = key;	
+	}
+
+
+	// Copy array into contents
+	int q, w;
+	int counter = 0;
+
+	for(q=0; q < size; ++q){
+		for(w=0; w < strlen(array[q]); ++w){
+			contents[0][counter] = array[q][w];
+			counter++;
+		}
+		contents[0][counter] = '\n';
+		counter++;
+	}	
+
+	// Free the memory from the array
+	int e;
+	for(e = 0; e < size; ++e){
+		free(array[e]);
+	}
+
+	free(array);
+
+}		
